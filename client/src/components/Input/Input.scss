@@ -1,0 +1,26 @@
+@import "../../config.scss";
+
+.input-label {
+  @include font("Arial", 400, 20px, 25px);
+  display: block;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.form-input {
+  border-radius: 12px;
+  @include font("Arial", 400, 17.6px, 25px);
+  color: #62b720;
+  border: none;
+  outline: none;
+  display: block;
+  padding: 10px 40px 10px 20px;
+  margin-top: 5px;
+  width: 430px;
+  min-height: 60px;
+  caret-color: #62b720;
+  &::placeholder {
+    color: #62b720;
+    @include font("Arial", 400, 17.6px, 25px);
+  }
+}

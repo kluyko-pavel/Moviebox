@@ -1,0 +1,9 @@
+@import "../../../config.scss";
+
+.movie-type {
+  color: #000;
+  background-color: #fff;
+  padding: 3px 5px;
+  text-transform: capitalize;
+  @include font("Arial", 400, 17.6px, 20.4px);
+}

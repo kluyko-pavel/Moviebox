@@ -1,0 +1,8 @@
+@import "../../../config.scss";
+.movie-year {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  @include font("Imprima", 400, 17.6px, 20.4px);
+}

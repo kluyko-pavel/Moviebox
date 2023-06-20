@@ -1,0 +1,11 @@
+@import "../../config.scss";
+
+.top-10 {
+  padding-top: 48px;
+  &__header {
+    @include font("Jost", 400, 23px, 20px);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+  }
+}

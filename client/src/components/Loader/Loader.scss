@@ -1,0 +1,17 @@
+@import "../../config.scss";
+
+.loader {
+  margin: 20px auto auto auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 8px solid $primary-color;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  animation: load 2s infinite linear;
+}
+@keyframes load {
+  100% {
+    transform: rotate(360deg);
+  }
+}

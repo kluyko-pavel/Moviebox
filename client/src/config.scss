@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  background-color: #1e1e1e;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main-content {
+  flex: 1;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1360px;
+  padding: 0 10px;
+}
+$primary-color: #ccff00;
+
+@mixin font($ff, $fw, $fs, $lh) {
+  font-family: $ff;
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+}
+
+@font-face {
+  font-family: "Electrolize";
+  src: url("../public/Electrolize-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Jost";
+  src: url("../public/Jost-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gurajada";
+  src: url("../public/Gurajada-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Homenaje";
+  src: url("../public/Homenaje-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Imprima";
+  src: url("../public/Imprima-Regular.ttf") format("truetype");
+}
+
+button,
+a {
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}

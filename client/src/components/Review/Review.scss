@@ -1,0 +1,50 @@
+@import "../../config.scss";
+
+.reviews {
+  margin-top: 15px;
+  max-height: 450px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  @include font("Jost", 400, 17px, 20px);
+  max-width: 750px;
+}
+.review {
+  padding: 15px;
+  border-radius: 10px;
+  border: 0.5px solid $primary-color;
+}
+.negative {
+  border: 0.5px solid red;
+}
+.neutral {
+  border: 0.5px solid yellow;
+}
+.review-info {
+  display: flex;
+  justify-content: space-between;
+  &__create {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+.review-main {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid grey;
+  &__title {
+    color: $primary-color;
+  }
+  &__text {
+    margin-top: 10px;
+    text-align: justify;
+  }
+}
+.negative .review-main__title {
+  color: #d01e1e;
+}
+.neutral .review-main__title {
+  color: yellow;
+}

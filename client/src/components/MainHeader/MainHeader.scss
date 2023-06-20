@@ -1,0 +1,88 @@
+@import "../../config.scss";
+.main-header {
+  position: relative;
+  z-index: 20;
+  padding-top: 25px;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__logo-text {
+    color: #fff;
+    @include font("Electrolize", 400, 26px, 20.4px);
+  }
+  &__vertical-line {
+    height: 11px;
+    width: 1px;
+    background-color: #acacac;
+  }
+}
+.main-header-nav {
+  flex-basis: 600px;
+  &__items {
+    height: 100%;
+    color: #fff;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  &__item {
+    @include font("Arial", 400, 17.6px, 20.4px);
+    &:hover a {
+      color: $primary-color;
+    }
+    & a {
+      color: #fff;
+      transition: 0.2s;
+    }
+  }
+}
+
+.main-header-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 245px;
+  &__search-form {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    max-width: 130px;
+    height: 30px;
+    padding: 0 10px;
+  }
+  &__search-input {
+    background-color: inherit;
+    border: none;
+    width: 100%;
+    color: #fff;
+    outline: none;
+    caret-color: $primary-color;
+    &:-webkit-autofill {
+      transition: all 5000s ease-in-out 0s;
+    }
+  }
+  &__sign-in-btn {
+    width: 90px;
+    height: 38.4px;
+    background-color: inherit;
+    color: #fff;
+    border: 2px solid $primary-color;
+    border-radius: 20px;
+    &:hover {
+      color: $primary-color;
+      transition: 0.2s;
+    }
+  }
+}

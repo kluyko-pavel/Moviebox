@@ -1,0 +1,9 @@
+@import "../../config.scss";
+
+.search-results {
+  padding-top: 83px;
+  &__header-title {
+    @include font("Jost", 400, 44px, 20px);
+    color: #fff;
+  }
+}

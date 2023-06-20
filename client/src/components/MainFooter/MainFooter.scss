@@ -1,0 +1,25 @@
+@import "../../config.scss";
+
+.main-footer {
+  padding: 22px 0 130px 0;
+  color: #fff;
+  @include font("Arial", 400, 22px, 25.5px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+.main-footer-text {
+  max-width: 1130px;
+}
+.main-footer-rights {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 450px;
+  &__line {
+    height: 15px;
+    width: 1px;
+    background-color: #acacac;
+  }
+}

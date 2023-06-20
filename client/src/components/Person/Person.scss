@@ -1,0 +1,31 @@
+@import "../../config.scss";
+.person {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover .person__photo {
+    box-shadow: 0px 10px 20px rgba(134, 220, 14, 0.2);
+  }
+  &:hover .person-about__name {
+    color: $primary-color;
+  }
+  &__photo {
+    border-radius: 50%;
+    transition: 0.2s;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+  }
+}
+.person-about {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @include font("Jost", 400, 17.6px, 20px);
+  &__name {
+    transition: 0.2s;
+  }
+}

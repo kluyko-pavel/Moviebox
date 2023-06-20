@@ -1,0 +1,1 @@
+export const TOGGLE_IS_FAVORITE = "TOGGLE_IS_FAVORITE";

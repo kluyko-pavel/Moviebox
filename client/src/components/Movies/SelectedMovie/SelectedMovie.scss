@@ -1,0 +1,280 @@
+@import "../../../config.scss";
+.selected-movie-wrapper {
+  height: 690px;
+  max-width: 1360px;
+  margin: 0 auto;
+  position: relative;
+}
+.selected-movie-background {
+  filter: blur(5px);
+  position: absolute;
+  top: -65px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  min-height: 755px;
+  &__gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.71) 0%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(174, 174, 174, 0.4) 0%,
+        rgba(68, 68, 68, 0.8) 100%
+      );
+  }
+}
+.selected-movie-container {
+  position: relative;
+  z-index: 2;
+  padding-top: 20px;
+}
+.selected-movie-nav {
+  transition: 0.2s;
+  max-width: 100px;
+  display: flex;
+  gap: 8px;
+  color: #fff;
+  align-items: center;
+  @include font("Jost", 400, 17.6px, 28px);
+  &:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
+  &:hover path {
+    fill: $primary-color;
+  }
+}
+.selected-movie-content {
+  display: flex;
+  margin-top: 30px;
+  gap: 87px;
+  color: #fff;
+  &__poster {
+    height: 426px;
+  }
+  &__empty-poster {
+    height: 426px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0px 1px rgba(0, 0, 0, 0.2),
+      4px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+.selected-movie-about {
+  max-height: 520px;
+}
+.selected-movie-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  @include font("Jost", 400, 17.6px, 20px);
+  & span {
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  &__title {
+    @include font("Jost", 400, 45px, 50px);
+    color: $primary-color;
+    cursor: pointer;
+    max-width: 500px;
+  }
+}
+.selected-movie-info {
+  animation: 0.3s info-animate;
+  margin-top: 15px;
+  overflow-y: scroll;
+  max-height: 450px;
+  &__additional {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    font-family: "Arial";
+  }
+  &__additional-genres {
+    text-transform: capitalize;
+    max-width: 300px;
+  }
+  &__additional-duration {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  &__adds {
+    margin-top: 15px;
+    padding: 15px 15px;
+    @include font("Jost", 400, 18px, 24px);
+    max-width: 390px;
+    border-radius: 19px;
+    background: rgba(63, 63, 63, 0.44);
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__add-value {
+    display: block;
+    max-width: 130px;
+    overflow-x: scroll;
+  }
+  &__favorites {
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 190px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid $primary-color;
+    margin-top: 20px;
+    @include font("Jost", 400, 20px, 24px);
+    background-color: inherit;
+    color: #fff;
+  }
+  &__favorites:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
+  &__description {
+    margin-top: 25px;
+    @include font("Jost", 400, 20px, 24px);
+  }
+  &__facts {
+    margin-top: 15px;
+    @include font("Jost", 400, 16px, 20px);
+    & span {
+      color: $primary-color;
+    }
+  }
+  &__fact {
+    margin-top: 7px;
+  }
+  &__similar-movies {
+    margin-top: 15px;
+    @include font("Jost", 400, 16px, 20px);
+    & span:first-child {
+      color: $primary-color;
+    }
+  }
+  &__similar-movie {
+    transition: 0.2s;
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+}
+.selected-movie-trailers {
+  animation: 0.3s trailers-animate;
+  margin-top: 15px;
+  overflow-y: scroll;
+  max-height: 450px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.selected-movie-persons {
+  animation: 0.3s persons-animate;
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  column-gap: 15px;
+  row-gap: 20px;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+.selected-movie-watchability {
+  max-height: 450px;
+  overflow-y: scroll;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.movie-broker {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  &__image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+}
+.movie-broker-info {
+  animation: 0.3s watchability-animate;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @include font("Jost", 400, 17.6px, 20px);
+  &__name {
+    color: $primary-color;
+  }
+  &__ref {
+    color: #fff;
+    transition: 0.2s;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+@keyframes info-animate {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes watchability-animate {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes trailers-animate {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes persons-animate {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    transform: perspective(100%);
+    opacity: 1;
+  }
+}

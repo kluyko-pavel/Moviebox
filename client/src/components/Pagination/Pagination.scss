@@ -1,0 +1,30 @@
+@import "../../config.scss";
+
+.pagination {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  &__el {
+    transition: 0.2s;
+    color: #fff;
+    font-size: 17px;
+    background-color: inherit;
+    @include font("Imprima", 400, 34px, 45px);
+    color: $primary-color;
+    background-color: #454545;
+    border-radius: 13px;
+    padding: 0 15px;
+    &:disabled path {
+      fill: grey;
+    }
+  }
+}
+.pagination-container {
+  display: flex;
+  gap: 16px;
+}
+.active {
+  color: grey;
+}
