@@ -11,11 +11,9 @@ import {
 } from "../../redux/action-creators/movies-action_creators";
 import { IStoreState } from "../../types";
 import { ListArrowIcon } from "../../components/icons";
-import { useRef, useState } from "react";
-import { useClickOutside } from "../../utils";
+import { useState } from "react";
 
 export const MainPage = () => {
-  const refFilters = useRef<any>();
   const movieType = useSelector((state: IStoreState) => state.movies.movieType);
   const limit = useSelector((state: IStoreState) => state.movies.limit);
   const genre = useSelector((state: IStoreState) => state.movies.genre);
@@ -49,8 +47,6 @@ export const MainPage = () => {
 
   const [isShowFitres, setIsShowFilters] = useState(false);
 
-  useClickOutside(refFilters, () => setIsShowFilters(false));
-
   window.addEventListener("resize", () => {
     window.innerWidth > 1270 ? setIsShowFilters(true) : setIsShowFilters(false);
   });
@@ -81,7 +77,6 @@ export const MainPage = () => {
           <button
             className="category-header-filter-btn"
             onClick={() => setIsShowFilters(!isShowFitres)}
-            ref={refFilters}
           >
             Фильтры {<ListArrowIcon />}
           </button>
