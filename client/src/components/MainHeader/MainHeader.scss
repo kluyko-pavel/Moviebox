@@ -86,3 +86,17 @@
     }
   }
 }
+
+@media (max-width: 1070px) {
+  .main-header-nav {
+    &__items {
+      display: none;
+    }
+  }
+  .main-header-tools {
+    flex-basis: 200px;
+    &__sign-in-btn {
+      display: none;
+    }
+  }
+}

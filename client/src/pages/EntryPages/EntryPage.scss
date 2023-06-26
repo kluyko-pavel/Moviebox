@@ -61,3 +61,47 @@
     }
   }
 }
+
+.entry-page-confirm-title {
+  @include font("Arial", 400, 25px, 40px);
+  max-width: 700px;
+  & span {
+    color: $primary-color;
+  }
+}
+
+@media (max-width: 820px) {
+  .entry-page {
+    height: 660px;
+    &__background {
+      min-height: 725px;
+    }
+  }
+  .entry-page-container {
+    padding: 80px 0 0 50px;
+  }
+}
+
+@media (max-width: 620px) {
+  .entry-page-container {
+    padding: 80px 0 0 30px;
+  }
+  .entry-page-form {
+    max-width: 250px;
+    &__title {
+      margin-bottom: 20px;
+      @include font("Arial", 600, 30px, 20px);
+    }
+    &__password-button {
+      top: 42px;
+    }
+    &__btn {
+      min-height: 40px;
+    }
+  }
+
+  .entry-page-confirm-title {
+    @include font("Arial", 400, 17.6px, 20px);
+    max-width: 250px;
+  }
+}

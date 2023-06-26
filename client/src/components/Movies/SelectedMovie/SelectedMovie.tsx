@@ -27,17 +27,17 @@ import { Review } from "../../Review";
 import {
   loadReviews,
   loadSelectedMovie,
-  setCurrentPage,
-  setLimitMovies,
 } from "../../../redux/action-creators/movies-action_creators";
 import { SelectedMovieSkeleton } from "./SelectedMovieSkeleton";
 import { BookmarkIcon } from "../../icons/BookmarkIcon";
 import { toggleIsFavorite } from "../../../redux/action-creators/user-action_creators";
 
 export const SelectedMovie = () => {
+  const isAuth = useSelector((state: IStoreState) => state.user.isAuth);
   const isLoading = useSelector((state: IStoreState) => state.ui.isLoading);
   const [selectedHeader, setSelectedHeader] = useState("main");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const selectedMovie = useSelector(
     (state: IStoreState) => state.movies.selectedMovie
   );
@@ -45,11 +45,11 @@ export const SelectedMovie = () => {
   const isFavorite = favorites.find((el) => el.id === selectedMovie.id);
 
   const { movieId = "" } = useParams();
-  const dispatch = useDispatch();
   const reviews = useSelector((state: IStoreState) => state.movies.reviews);
 
   useEffect(() => {
     dispatch(loadSelectedMovie(movieId));
+    dispatch(loadReviews(movieId));
   }, []);
 
   if (JSON.stringify(selectedMovie) === "{}") {
@@ -83,7 +83,7 @@ export const SelectedMovie = () => {
   };
 
   const handleAddToFavorites = () => {
-    dispatch(toggleIsFavorite(selectedMovie));
+    isAuth ? dispatch(toggleIsFavorite(selectedMovie)) : navigate("/sign-in");
   };
 
   return isLoading ? (
@@ -129,6 +129,7 @@ export const SelectedMovie = () => {
                 >
                   {selectedMovie.name}
                 </h2>
+
                 {JSON.stringify(selectedMovie.videos?.trailers) !== "[]" &&
                   selectedMovie.videos?.trailers && (
                     <span
@@ -139,6 +140,7 @@ export const SelectedMovie = () => {
                       <ListArrowIcon />
                     </span>
                   )}
+
                 {JSON.stringify(selectedMovie.persons) !== "[]" &&
                   selectedMovie.persons && (
                     <span
@@ -148,6 +150,7 @@ export const SelectedMovie = () => {
                       Ключевые лица <ListArrowIcon />
                     </span>
                   )}
+
                 {JSON.stringify(selectedMovie.watchability?.items) !== "[]" &&
                   selectedMovie.watchability?.items && (
                     <span
@@ -157,6 +160,7 @@ export const SelectedMovie = () => {
                       Где посмотреть <ListArrowIcon />
                     </span>
                   )}
+
                 {JSON.stringify(reviews) !== "[]" && reviews && (
                   <span
                     className="selected-movie-header__reviews"
@@ -167,6 +171,7 @@ export const SelectedMovie = () => {
                   </span>
                 )}
               </header>
+
               {selectedHeader === "main" ? (
                 <div className="selected-movie-info">
                   <div className="selected-movie-info__additional">
@@ -238,7 +243,7 @@ export const SelectedMovie = () => {
                     type="button"
                     onClick={handleAddToFavorites}
                   >
-                    <BookmarkIcon fill="#ccff00" />{" "}
+                    <BookmarkIcon fill="#ccff00" />
                     {isFavorite ? (
                       <span style={{ color: "#ccff00" }}>В избранном</span>
                     ) : (

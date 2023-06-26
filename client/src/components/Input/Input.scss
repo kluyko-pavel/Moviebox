@@ -23,4 +23,19 @@
     color: #62b720;
     @include font("Arial", 400, 17.6px, 25px);
   }
+  &:-webkit-autofill {
+    transition: all 5000s ease-in-out 0s;
+  }
+}
+
+@media (max-width: 620px) {
+  .form-input {
+    border-radius: 12px;
+    @include font("Arial", 400, 15px, 20px);
+    width: 250px;
+    min-height: 40px;
+    &::placeholder {
+      @include font("Arial", 400, 15px, 20px);
+    }
+  }
 }

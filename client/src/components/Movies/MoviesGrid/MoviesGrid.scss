@@ -1,8 +1,14 @@
 .movies-grid {
   padding: 48px 0;
   display: grid;
-  justify-content: space-between;
-  grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(295px, 295px));
   column-gap: 25px;
   row-gap: 50px;
+}
+
+@media (max-width: 620px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+  }
 }

@@ -26,10 +26,13 @@ export interface IMovieState {
 export interface IUiState {
   isLoading: boolean;
   isLoadingRandom: boolean;
+  modalInfo: IModal;
 }
 
 export interface IUserState {
   favorites: IMovieInfo[];
+  user: IUserInfo;
+  isAuth: boolean;
 }
 
 export interface IReviewResponse {
@@ -101,6 +104,11 @@ export interface IReview {
   author: string;
 }
 
+export interface IModal {
+  text?: string;
+  showModal: boolean;
+}
+
 export interface IInput {
   labelName: string;
   type: string;
@@ -111,6 +119,12 @@ export interface IInput {
   required?: boolean;
   autoFocus?: boolean;
   isActive?: boolean;
+}
+
+export interface IUserInfo {
+  id: string;
+  email: string;
+  isActivated: boolean;
 }
 
 export interface ISimilarMovie {
@@ -168,6 +182,17 @@ export interface IPerson {
   enName: string;
   profession: string;
   enProfession: string;
+}
+
+export interface IAuthResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: IUserInfo;
+}
+
+export interface IAuthInfo {
+  email: string;
+  password: string;
 }
 
 export interface ITrailer {

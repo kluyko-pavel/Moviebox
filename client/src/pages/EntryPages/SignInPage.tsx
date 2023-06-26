@@ -1,23 +1,28 @@
-import { useDispatch } from "react-redux";
-import { Input } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { Input, Loader } from "../../components";
 import { useState } from "react";
 import "./EntryPage.scss";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon } from "../../components/icons";
+import { signIn } from "../../redux/action-creators/user-action_creators";
+import { IStoreState } from "../../types";
 
 export const SignInPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [userLogin, setUserLogin] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const isLoading = useSelector((state: IStoreState) => state.ui.isLoading);
 
   const handleSignIn = (e: any) => {
     e.preventDefault();
-    //   dispatch(signIn({ email: userEmail, password: userPassword }));
+    dispatch(signIn({ email: userEmail, password: userPassword }));
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <section className="entry-page">
       <div
         className="entry-page__background"
@@ -29,23 +34,28 @@ export const SignInPage = () => {
       ></div>
       <div className="container">
         <div className="entry-page-container">
-          <form className="entry-page-form" name="login-page-form" action="#">
+          <form
+            className="entry-page-form"
+            name="login-page-form"
+            action="#"
+            onSubmit={handleSignIn}
+          >
             <h3 className="entry-page-form__title">Авторизация</h3>
             <Input
-              labelName="Логин"
+              labelName="Email"
               type="text"
-              name="login-input"
-              placeholder="Введите логин"
+              name="sign-in-email-input"
+              placeholder="Введите email"
               required
               isActive={true}
-              value={userLogin}
-              callback={(e: any) => setUserLogin(e.target.value)}
+              value={userEmail}
+              callback={(e: any) => setUserEmail(e.target.value)}
             />
             <div className="entry-page-form__password">
               <Input
                 labelName="Пароль"
                 type={showPassword ? "text" : "password"}
-                name="password-input"
+                name="sign-in-password-input"
                 placeholder="Введите пароль"
                 isActive={true}
                 required

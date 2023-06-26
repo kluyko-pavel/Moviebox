@@ -26,8 +26,8 @@ export const Pagination = () => {
     dispatch(setCurrentPage(1));
   }, []);
 
-  const pageNumberLimit = 6;
-  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(6);
+  const [pageNumberLimit] = useState(4);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(pageNumberLimit);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(1);
 
   const handleSetCurrentPage = (currentPage: number) => {
@@ -36,7 +36,7 @@ export const Pagination = () => {
       setMinPageNumberLimit(1);
       setMaxPageNumberLimit(pageNumberLimit);
     } else if (currentPage === countOfPages) {
-      setMinPageNumberLimit(countOfPages - pageNumberLimit);
+      setMinPageNumberLimit(countOfPages - (pageNumberLimit - 1));
       setMaxPageNumberLimit(countOfPages);
     }
   };
@@ -82,7 +82,7 @@ export const Pagination = () => {
   return (
     <div className="pagination">
       <button
-        className="pagination__el"
+        className="pagination__el pagination-arrow"
         type="button"
         disabled={currentPage === 1}
         onClick={handleSwitchPrevPage}
@@ -135,7 +135,7 @@ export const Pagination = () => {
       </div>
 
       <button
-        className="pagination__el"
+        className="pagination__el pagination-arrow"
         type="button"
         disabled={currentPage === countOfPages}
         onClick={handleSwitchNextPage}

@@ -5,15 +5,15 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   &__el {
     transition: 0.2s;
-    color: #fff;
-    font-size: 17px;
-    background-color: inherit;
-    @include font("Imprima", 400, 34px, 45px);
+    @include font("Imprima", 400, 30px, 45px);
     color: $primary-color;
     background-color: #454545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 13px;
     padding: 0 15px;
     &:disabled path {
@@ -23,8 +23,40 @@
 }
 .pagination-container {
   display: flex;
-  gap: 16px;
+  gap: 10px;
 }
 .active {
   color: grey;
+}
+
+@media (max-width: 1070px) {
+  .pagination {
+    gap: 10px;
+    &__el {
+      @include font("Imprima", 400, 20px, 35px);
+      padding: 0 10px;
+    }
+  }
+  .pagination-container {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 620px) {
+  .pagination {
+    gap: 5px;
+    &__el {
+      @include font("Imprima", 400, 15px, 20px);
+      padding: 0 7px;
+      border-radius: 7px;
+    }
+  }
+  .pagination-container {
+    gap: 5px;
+  }
+}
+@media (max-width: 460px) {
+  .pagination-arrow {
+    display: none;
+  }
 }

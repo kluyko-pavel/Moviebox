@@ -4,3 +4,4 @@ export { PersonPage } from "./PersonPage/PersonPage";
 export { SearchPage } from "./SearchPage/SearchPage";
 export { SignInPage } from "./EntryPages/SignInPage";
 export { SignUpPage } from "./EntryPages/SignUpPage";
+export { EmailConfirmPage } from "./EmailConfirmPage/EmailConfirmPage";

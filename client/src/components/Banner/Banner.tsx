@@ -28,6 +28,7 @@ export const Banner = () => {
   const movieYear = randomMovie.year;
   const movieId = randomMovie.id;
   const movieName = randomMovie.name;
+
   return (
     <div className="banner-wrapper">
       <div
@@ -46,7 +47,6 @@ export const Banner = () => {
             height={755}
           />
         )}
-
         <div className="container">
           <div className="banner-content">
             <p className="banner-content__title">Moviebox</p>

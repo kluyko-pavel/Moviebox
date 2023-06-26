@@ -7,3 +7,5 @@ export * from "./Loader";
 export * from "./CardSkeleton";
 export * from "./Person";
 export * from "./Input";
+export * from "./Modal";
+export * from "./BurgerMenu";

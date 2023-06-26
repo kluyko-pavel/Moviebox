@@ -5,10 +5,11 @@ import moviesReducer from "./reducers/movies-reducer";
 import { watcherMovie } from "./action-creators/movies-action_creators";
 import uiReducer from "./reducers/ui-reducer";
 import userReducer from "./reducers/user-reducer";
+import { watcherUser } from "./action-creators/user-action_creators";
 
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
-  yield all([watcherMovie()]);
+  yield all([watcherMovie(), watcherUser()]);
 }
 
 const store = createStore(

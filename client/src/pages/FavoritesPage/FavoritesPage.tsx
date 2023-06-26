@@ -13,11 +13,24 @@ export const FavoritesPage = () => {
             <h3 className="category-header-name__title">Избранное</h3>
           </div>
         </header>
-        <div className="movies-grid">
-          {favorites.map((movie: IMovieInfo) => (
-            <Movie key={movie.id} movie={movie} />
-          ))}
-        </div>
+        {favorites.length ? (
+          <div className="movies-grid">
+            {favorites.map((movie: IMovieInfo) => (
+              <Movie key={movie.id} movie={movie} />
+            ))}
+          </div>
+        ) : (
+          <h3
+            className="favorites-page__empty"
+            style={{
+              padding: "48px",
+              color: "#fff",
+              fontFamily: "Jost",
+            }}
+          >
+            Тут пока пусто...
+          </h3>
+        )}
       </div>
     </section>
   );

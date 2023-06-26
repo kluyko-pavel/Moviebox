@@ -1,8 +1,14 @@
-import { IMovieInfo, IUserState } from "../../types";
-import { TOGGLE_IS_FAVORITE } from "../action-types/user-action_types";
+import { IMovieInfo, IUserInfo, IUserState } from "../../types";
+import {
+  SET_AUTH,
+  SET_USER,
+  TOGGLE_IS_FAVORITE,
+} from "../action-types/user-action_types";
 
 const initialState = {
   favorites: [] as IMovieInfo[],
+  user: {} as IUserInfo,
+  isAuth: false,
 };
 
 const getInitialState = () => {
@@ -29,6 +35,20 @@ const userReducer = (state: IUserState = getInitialState(), action: any) => {
       return {
         ...state,
         favorites: newFavorites,
+      };
+    }
+    case SET_USER: {
+      const { user } = action;
+      return {
+        ...state,
+        user,
+      };
+    }
+    case SET_AUTH: {
+      const { isAuth } = action;
+      return {
+        ...state,
+        isAuth,
       };
     }
     default: {

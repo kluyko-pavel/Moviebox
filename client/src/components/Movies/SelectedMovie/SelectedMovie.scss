@@ -77,6 +77,7 @@
   display: flex;
   align-items: center;
   gap: 25px;
+  flex-wrap: wrap;
   @include font("Jost", 400, 17.6px, 20px);
   & span {
     transition: 0.2s;
@@ -102,6 +103,7 @@
   max-height: 450px;
   &__additional {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 17px;
     font-family: "Arial";
@@ -276,5 +278,52 @@
     transform: scale(1);
     transform: perspective(100%);
     opacity: 1;
+  }
+}
+
+@media (max-width: 1080px) {
+  .selected-movie-header {
+    &__title {
+      @include font("Jost", 400, 35px, 40px);
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  .selected-movie-header {
+    &__title {
+      @include font("Jost", 400, 25px, 30px);
+    }
+  }
+  .selected-movie-content {
+    gap: 37px;
+    &__poster {
+      height: 326px;
+    }
+    &__empty-poster {
+      height: 326px;
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .selected-movie-wrapper {
+    height: 1020px;
+  }
+  .selected-movie-background {
+    min-height: 1081px;
+  }
+  .selected-movie-content {
+    flex-direction: column;
+    gap: 37px;
+    color: #fff;
+    &__poster {
+      height: 326px;
+      width: 229px;
+    }
+    &__empty-poster {
+      height: 326px;
+      width: 229px;
+    }
   }
 }

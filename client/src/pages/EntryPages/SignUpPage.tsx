@@ -1,26 +1,28 @@
-import { useDispatch } from "react-redux";
-import { Input } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { Input, Loader } from "../../components";
 import { useState } from "react";
 import "./EntryPage.scss";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon } from "../../components/icons";
+import { signUp } from "../../redux/action-creators/user-action_creators";
+import { IStoreState } from "../../types";
 
 export const SignUpPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
-  const [userLogin, setUserLogin] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userConfirmPassword, setUserConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const isLoading = useSelector((state: IStoreState) => state.ui.isLoading);
 
-  const handleSignIn = (e: any) => {
+  const handleSignUp = (e: any) => {
     e.preventDefault();
-    //   dispatch(signIn({ email: userEmail, password: userPassword }));
+    dispatch(signUp({ email: userEmail, password: userPassword }));
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <section className="entry-page">
       <div
         className="entry-page__background"
@@ -32,33 +34,28 @@ export const SignUpPage = () => {
       ></div>
       <div className="container">
         <div className="entry-page-container">
-          <form className="entry-page-form" name="reg-page-form" action="#">
+          <form
+            className="entry-page-form"
+            name="reg-page-form"
+            action="#"
+            onSubmit={handleSignUp}
+          >
             <h3 className="entry-page-form__title">Регистрация</h3>
             <Input
               labelName="Email"
               type="email"
-              name="email-input"
+              name="sign-up-email-input"
               placeholder="Введите почту"
               required
               isActive={true}
               value={userEmail}
               callback={(e: any) => setUserEmail(e.target.value)}
             />
-            <Input
-              labelName="Логин"
-              type="text"
-              name="login-input"
-              placeholder="Введите логин"
-              required
-              isActive={true}
-              value={userLogin}
-              callback={(e: any) => setUserLogin(e.target.value)}
-            />
             <div className="entry-page-form__password">
               <Input
                 labelName="Пароль"
                 type={showPassword ? "text" : "password"}
-                name="password-input"
+                name="sign-up-password-input"
                 placeholder="Введите пароль"
                 isActive={true}
                 required
@@ -69,25 +66,6 @@ export const SignUpPage = () => {
                 className="entry-page-form__password-button"
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-              >
-                <EyeIcon />
-              </button>
-            </div>
-            <div className="entry-page-form__password">
-              <Input
-                labelName="Подтверждение пароля"
-                type={showConfirmPassword ? "text" : "password"}
-                name="password-confirm-input"
-                placeholder="Повторите пароль"
-                isActive={true}
-                required
-                value={userConfirmPassword}
-                callback={(e: any) => setUserConfirmPassword(e.target.value)}
-              />
-              <button
-                className="entry-page-form__password-button"
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 <EyeIcon />
               </button>

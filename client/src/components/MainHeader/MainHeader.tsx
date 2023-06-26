@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { LogoIcon, SearchIcon } from "../icons";
 import "./MainHeader.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setMovieType,
   setSearch,
 } from "../../redux/action-creators/movies-action_creators";
 import { useState } from "react";
+import { IStoreState } from "../../types";
+import { logOut } from "../../redux/action-creators/user-action_creators";
+import { BurgerMenu } from "../BurgerMenu";
 
 export const MainHeader = () => {
   const navigate = useNavigate();
@@ -39,6 +42,13 @@ export const MainHeader = () => {
     }
   };
 
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
+
+  const isAuth: boolean = useSelector(
+    (state: IStoreState) => state.user.isAuth
+  );
   return (
     <header className="main-header">
       <div className="container">
@@ -55,7 +65,11 @@ export const MainHeader = () => {
               <span className="main-header__vertical-line"></span>
               <li
                 className="main-header-nav__item"
-                onClick={() => navigate("/favorites")}
+                onClick={
+                  isAuth
+                    ? () => navigate("/favorites")
+                    : () => navigate("/sign-in")
+                }
               >
                 <a href="#category-header">ИЗБРАННОЕ</a>
               </li>
@@ -93,9 +107,13 @@ export const MainHeader = () => {
                 onChange={(e: any) => setSearchValue(e.target.value)}
               />
             </form>
-            <div className="main-header-tools__username">
-              <button className="main-header-tools__sign-in-btn">ВОЙТИ</button>
-            </div>
+            <button
+              className="main-header-tools__sign-in-btn"
+              onClick={!isAuth ? () => navigate("/sign-in") : handleLogOut}
+            >
+              {!isAuth ? "ВОЙТИ" : "ВЫЙТИ"}
+            </button>
+            <BurgerMenu />
           </div>
         </div>
       </div>
