@@ -21,9 +21,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      dispatch(checkAuth());
-    }
+    setTimeout(() => {
+      if (localStorage.getItem("accessToken")) {
+        dispatch(checkAuth());
+      }
+    }, 3000);
   }, []);
 
   const isModal = useSelector(
