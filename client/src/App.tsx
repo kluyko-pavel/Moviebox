@@ -24,9 +24,11 @@ function App() {
   );
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      dispatch(checkAuth());
-    }
+    setTimeout(() => {
+      if (localStorage.getItem("accessToken")) {
+        dispatch(checkAuth());
+      }
+    }, 3000);
   }, []);
   return (
     <div className="wrapper">
