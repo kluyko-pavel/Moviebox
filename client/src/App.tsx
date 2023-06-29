@@ -12,24 +12,23 @@ import {
 } from "./pages";
 import { FavoritesPage } from "./pages/FavoritesPage/FavoritesPage";
 import { SignInPage } from "./pages";
-import { useEffect } from "react";
-import { checkAuth } from "./redux/action-creators/user-action_creators";
 import { useDispatch, useSelector } from "react-redux";
 import { IStoreState } from "./types";
+import { useEffect } from "react";
+import { checkAuth } from "./redux/action-creators/user-action_creators";
 
 function App() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      dispatch(checkAuth());
+    }
+  }, []);
+
   const isModal = useSelector(
     (state: IStoreState) => state.ui.modalInfo.showModal
   );
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (localStorage.getItem("accessToken")) {
-        dispatch(checkAuth());
-      }
-    }, 3000);
-  }, []);
   return (
     <div className="wrapper">
       <SkeletonTheme baseColor="#313131" highlightColor="#525252">

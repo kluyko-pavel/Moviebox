@@ -130,6 +130,7 @@ function* fetchCheckAuth() {
     yield put(setAuth(true));
     localStorage.setItem("accessToken", res.accessToken);
   } else {
+    debugger;
     yield put(setUser({} as IUserInfo));
     localStorage.removeItem("accessToken");
     yield put(setAuth(false));
