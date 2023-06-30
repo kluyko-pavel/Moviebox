@@ -62,7 +62,7 @@ function* fetchSignIn(action: any) {
       yield put(setUser(res.user));
       yield put(setAuth(true));
       localStorage.setItem("accessToken", res.accessToken);
-      setTimeout(() => (window.location.pathname = "/"), 5000);
+      window.location.pathname = "/";
     } else {
       yield put(
         toggleModal({
@@ -130,11 +130,10 @@ function* fetchCheckAuth() {
     yield put(setAuth(true));
     localStorage.setItem("accessToken", res.accessToken);
   } else {
-    console.log(resp);
     yield put(setUser({} as IUserInfo));
     localStorage.removeItem("accessToken");
     yield put(setAuth(false));
-    // window.location.pathname = "/sign-in";
+    window.location.pathname = "/sign-in";
   }
 }
 
