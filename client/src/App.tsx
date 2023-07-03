@@ -19,7 +19,6 @@ import { checkAuth } from "./redux/action-creators/user-action_creators";
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       dispatch(checkAuth());

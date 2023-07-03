@@ -49,7 +49,6 @@ function* fetchSignIn(action: any) {
   yield put(toggleIsLoading(true));
   const { user } = action;
   const resp: Response = yield fetch(`${AUTH_API_URL}/login`, {
-    credentials: "include",
     method: "POST",
     body: JSON.stringify(user),
     headers: {
@@ -62,6 +61,7 @@ function* fetchSignIn(action: any) {
       yield put(setUser(res.user));
       yield put(setAuth(true));
       localStorage.setItem("accessToken", res.accessToken);
+      localStorage.setItem("refreshToken", res.refreshToken);
       window.location.pathname = "/";
     } else {
       yield put(
@@ -82,7 +82,6 @@ function* fetchSignUp(action: any) {
   yield put(toggleIsLoading(true));
   const { user } = action;
   const resp: Response = yield fetch(`${AUTH_API_URL}/registration`, {
-    credentials: "include",
     method: "POST",
     body: JSON.stringify(user),
     headers: {
@@ -102,7 +101,6 @@ function* fetchSignUp(action: any) {
 
 function* fetchLogOut() {
   const resp: Response = yield fetch(`${AUTH_API_URL}/logout`, {
-    credentials: "include",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -110,6 +108,7 @@ function* fetchLogOut() {
   });
   if (resp.ok) {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     yield put(setAuth(false));
     yield put(setUser({} as IUserInfo));
     window.location.pathname = "/sign-in";
@@ -117,12 +116,13 @@ function* fetchLogOut() {
 }
 
 function* fetchCheckAuth() {
+  const token: string = yield localStorage.getItem("refreshToken");
   const resp: Response = yield fetch(`${AUTH_API_URL}/refresh`, {
-    credentials: "include",
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(token),
   });
   if (resp.ok) {
     const res: IAuthResponse = yield resp.json();
@@ -132,6 +132,7 @@ function* fetchCheckAuth() {
   } else {
     yield put(setUser({} as IUserInfo));
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     yield put(setAuth(false));
     window.location.pathname = "/sign-in";
   }
