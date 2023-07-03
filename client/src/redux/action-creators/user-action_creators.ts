@@ -122,7 +122,7 @@ function* fetchCheckAuth() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(token),
+    body: JSON.stringify({ refreshToken: token }),
   });
   if (resp.ok) {
     const res: IAuthResponse = yield resp.json();
