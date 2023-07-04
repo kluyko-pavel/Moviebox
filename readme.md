@@ -1,4 +1,4 @@
-### Moviebox project
+### Movie project
 
 [DemoLink](https://moviebox-qq7d.onrender.com)
 
