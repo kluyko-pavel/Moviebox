@@ -45,7 +45,9 @@ export const MainPage = () => {
     dispatch(setMovieGenre(e.target.value));
   };
 
-  const [isShowFitres, setIsShowFilters] = useState(false);
+  const [isShowFitres, setIsShowFilters] = useState(
+    window.innerWidth > 1270 ? true : false
+  );
 
   window.addEventListener("resize", () => {
     window.innerWidth > 1270 ? setIsShowFilters(true) : setIsShowFilters(false);
